@@ -30,12 +30,29 @@ export default class TaskList extends Component {
     tasks.forEach(task => {
       if(task.id == taskId)task.doneAt = task.doneAt ? null : new Date();
     });
-    this.setState({ tasks});
+    this.setState({ tasks}, this.filterTasks);
   };
 
-  toggleFilter = () => {
-    this.setState({ showDoneTasks: !this.state.showDoneTasks});
+  componentDidMount = () => {
+    this.filterTasks();
   }
+
+  toggleFilter = () => {
+    this.setState({ showDoneTasks: !this.state.showDoneTasks}, this.filterTasks);
+  }
+
+  filterTasks = () => {
+    let visibleTasks = null;
+
+    if(this.state.showDoneTasks) {
+      visibleTasks = [...this.state.tasks];
+    } else {
+      visibleTasks = this.state.tasks.filter(task => task.doneAt === null);
+    }
+
+    this.setState({visibleTasks});
+  }
+
   render() {
     const today = moment().locale('pt-br').format('ddd, D [de] MMMM')
     return (

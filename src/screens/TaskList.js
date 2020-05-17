@@ -10,7 +10,7 @@ import {
 	Alert
 } from 'react-native';
 import { AsyncStorage } from 'react-native';
-import todayImage from '../../assets/imgs/today.jpg';
+import todayImage from '../../assets/imgs/code.png';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import commonStyles from '../commonStyles';
@@ -81,7 +81,6 @@ export default class TaskList extends Component {
 	}
 
 	deleteTask = id => {
-		console.log(`oi`)
 		const tasks = this.state.tasks.filter(task => task.id !== id);
 		this.setState({ tasks }, this.filterTasks);
 	}
@@ -139,13 +138,13 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end'
 	},
 	title: {
-		color: commonStyles.colors.secondary,
+		color: 'white',
 		fontSize: 50,
 		marginLeft: 20,
 		marginBottom: 20
 	},
 	subtitle: {
-		color: commonStyles.colors.secondary,
+		color: 'white',
 		fontSize: 20,
 		marginLeft: 20,
 		marginBottom: 30
